@@ -1,0 +1,46 @@
+@import 'variable.less';
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  touch-action: manipulation;
+  -webkit-touch-callout: none !important;
+  overflow-x: auto;
+  background-color: @bg-grey;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.flt-l {
+  float: left;
+}
+
+.flt-r {
+  float: right;
+}
+
+i.iconfont {
+  margin-right: 6px;
+}
