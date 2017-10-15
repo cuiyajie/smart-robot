@@ -1,5 +1,5 @@
 export const Routes = {
-  AUTO: 'automatic',
+  AUTO: '',
   SEMI_AUTO: 'semi_automatic',
   CLOSED: 'closed'
 }

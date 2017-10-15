@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     routeTo(route) {
-      this.$router.push(route);
+      this.$router.push(`/${route}`);
     },
 
     showSettingModal() {
