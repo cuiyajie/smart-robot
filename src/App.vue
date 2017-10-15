@@ -3,7 +3,7 @@
     <div class="header">
       <div class="page-header">
         <div class="container">智小点</div>
-        <i class="iconfont icon-close btn-close"></i>
+        <i class="iconfont icon-close btn-close" @click="closeApp"></i>
       </div>
       <div class="page-nav">
         <div class="container radiogroup">
@@ -20,10 +20,11 @@
         <div class="flt-r"><i class="iconfont icon-chat"></i>智小点客服</div>
       </div>
       <div class="popup container" v-show="settingVisible">
-        <span style="margin-right: 15px;">夜间模式：</span><time-setting ref="start" :hour="9"></time-setting>
+        <span style="margin-right: 15px;">夜间模式：</span><time-setting ref="start" :hour="startTimeSetting"></time-setting>
         <span class="seperator">至</span>
-        <time-setting ref="end" :hour="18"></time-setting>
-        <i @click="hideSettingModal" class="iconfont icon-close btn-close"></i>
+        <time-setting ref="end" :hour="endTimeSetting"></time-setting>
+        <i style="font-size: 13px;" @click="hideSettingModal" class="iconfont icon-bold_close btn-close"></i>
+        <div class="btn-container"><button class="btn btn-save" @click="saveSetting">保存</button></div>
       </div>
     </div>
   </div>
@@ -32,20 +33,19 @@
 <script>
 import Vue from 'vue'
 import { Routes } from '@/utils/constants'
+import { mapGetters } from 'vuex'
+import { NameSpaces } from '@/store'
 
 Vue.component('TimeSetting', {
-  
   props: {
     hour: {
       type: Number,
       default: 1
     }
   },
-
   template: `<select ref="select"> 
     <option v-for="(v, index) in Array(24)" :key="index" :selected="(index + 1) === hour" :value="index">{{ index + 1 }}点</option>
   </select>`,
-
   methods: {
     getValue() {
       return this.$refs.select.value;
@@ -57,23 +57,45 @@ export default {
   data() {
     return {
       Routes,
-      settingVisible: false
+      settingVisible: false,
+      startTimeSetting: 0,
+      endTimeSetting: 0
     }
   },
-
+  computed: {
+    ...mapGetters(NameSpaces.GLOBAL, {
+      timeSetting: 'timeSetting'
+    })
+  },
   methods: {
     routeTo(route) {
       this.$router.push(route);
     },
 
     showSettingModal() {
+      if (this.timeSetting) {
+        this.startTimeSetting = this.timeSetting.start;
+        this.endTimeSetting = this.timeSetting.end;
+      }
       this.settingVisible = true;
     },
 
     hideSettingModal() {
-      console.log(this.$refs.start.getValue());
-      console.log(this.$refs.end.getValue());
+      this.startTimeSetting = 0;
+      this.endTimeSetting = 0;
       this.settingVisible = false;
+    },
+
+    saveSetting() {
+      this.$store.commit(`${NameSpaces.GLOBAL}/saveTimeSetting`, {
+        start: +this.$refs.start.getValue(),
+        end: +this.$refs.end.getValue()
+      })
+      this.settingVisible = false;
+    },
+
+    closeApp() {
+      console.log('TODO: close app');
     }
   }
 }
@@ -84,20 +106,19 @@ export default {
 
 #app {
   position: relative;
+}
 
-  label {
-    cursor: pointer;
-  }
+label {
+  cursor: pointer;
+}
 
-
-  i.icon-close.btn-close {
-    position: absolute;
-    line-height: 100%;
-    font-size: 18px;
-    top: 16px;
-    right: 20px;
-    cursor: pointer;
-  }
+i.btn-close {
+  position: absolute;
+  line-height: 100%;
+  font-size: 18px;
+  top: 16px;
+  right: 20px;
+  cursor: pointer;
 }
 
 .page-header {
@@ -150,9 +171,9 @@ export default {
   padding-bottom: 60px;
   height: 100%;
   overflow: auto;
+  position: relative;
 
   .content-inner {
-    position: relative;
     padding-top: 36px;
   }
 }
@@ -174,14 +195,23 @@ export default {
     bottom: 100%;
     left: 0;
     right: 0;
-    height: 80px;
+    line-height: 100%;
+    padding-top: 36px;
+    padding-bottom: 24px;
     background-color: #FFF;
     box-shadow: 0 0 0 1px @default-blue inset;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 
     .seperator {
       margin: 2px 10px 0; 
+    }
+
+    .btn-container {
+      flex-basis: 100%;
+      text-align: right;
+      margin-top: 15px;
     }
 
     i { color: @default-blue; }

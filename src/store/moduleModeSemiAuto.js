@@ -11,10 +11,22 @@ export default {
           content: '您好，我们店里最近新推出超柔成长库拉拉裤',
           count: 43
         }, {
-          content: '您好，我们店里最近新推出超柔成长库拉拉裤',
+          content: '您好，我们店里最近新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤',
           count: 24
         }, {
+          content: '您好，我们店里最近新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤',
+          count: 67
+        }]
+      }, {
+        question: '这是出的新品么？',
+        answers: [{
           content: '您好，我们店里最近新推出超柔成长库拉拉裤',
+          count: 43
+        }, {
+          content: '您好，我们店里最近新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤',
+          count: 24
+        }, {
+          content: '您好，我们店里最近新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤新推出超柔成长库拉拉裤',
           count: 67
         }]
       }]
@@ -26,10 +38,15 @@ export default {
   },
 
   mutations: {
-
+    focusQuestion(state, { rqa }) {
+      console.log(`TODO: prepare answer ${rqa.question}`);
+    },
+    selectAnswer(state, { answer, rqa }) {
+      console.log(`TODO: user ${answer.content} as answer of question ${rqa.question}. used ${answer.count} times`);
+    }
   },
 
   getters: {
-    
+    currentCustomer(state) { return state.currentCustomer; }
   }
 }

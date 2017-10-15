@@ -1,4 +1,5 @@
-import { QAStatus } from '@/utils/constants';
+import { QAStatus, RobotStatus } from '@/utils/constants';
+import { NameSpaces } from './index';
 
 export default {
   namespaced: true,
@@ -24,25 +25,30 @@ export default {
     waitingCustomers: [
       {
         name: '恍如初晴',
-        waitingTime: '5分钟'
+        waitingTime: 300
       },
       {
         name: '阿毛',
-        waitingTime: '1分钟'
+        waitingTime: 60
       },
       {
         name: 'Bob',
-        waitingTime: '50秒'
+        waitingTime: 50
       }
     ]
   },
 
   actions: {
-
+    serveManully({ commit }, { waiter }) {
+      console.log(`TODO: start serve ${waiter.name} manually`);
+      commit(`${NameSpaces.GLOBAL}/toggleRobotStatus`, { status: RobotStatus.CLOSED }, { root: true });
+    }
   },
 
   mutations: {
-
+    answerQuestion(state, { qa }) {
+      console.log(`TODO: start anwser => ${qa.question}`);
+    }
   },
 
   getters: {

@@ -1,5 +1,5 @@
 <template>
-  <span>Hello Closed</span>
+  <span>TODO</span>
 </template>
 
 <script>
