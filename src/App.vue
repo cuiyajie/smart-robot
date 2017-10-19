@@ -67,8 +67,18 @@ export default {
       timeSetting: 'timeSetting'
     })
   },
+  created() {
+    if (this.$route.name === Routes.SEMI_AUTO) {
+      this.$store.dispatch(`${NameSpaces.SEMI_AUTO}/getInitData`);
+    }
+  },
   methods: {
     routeTo(route) {
+      if (route === Routes.AUTO) {
+        this.$store.dispatch(`${NameSpaces.AUTO}/getInitData`);
+      } else if (route === Routes.SEMI_AUTO) {
+        this.$store.dispatch(`${NameSpaces.SEMI_AUTO}/getInitData`);
+      }
       this.$router.push(`/${route}`);
     },
 

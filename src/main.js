@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import store from './store'
+import { initBridge } from './data/bridge'
 import './styles/iconfont.css'
 import './styles/index.less'
 
@@ -18,3 +19,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+initBridge();
