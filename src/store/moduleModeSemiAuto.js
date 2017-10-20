@@ -12,7 +12,7 @@ export default {
     actions: {
         getInitData() {
             // TODO: sendMessage
-            receiveMessage();
+            //receiveMessage();
         }
     },
 
