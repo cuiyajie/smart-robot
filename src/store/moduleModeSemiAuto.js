@@ -1,36 +1,37 @@
-import { sendMessage, receiveMessage } from '@/data/bridge' 
+import { sendMessage, receiveMessage } from '@/data/bridge'
 
 export default {
-  namespaced: true,
-  
-  state: {
-    currentCustomer: {
-      robotQAs: []
-    }
-  },
+    namespaced: true,
 
-  actions: {
-    getInitData() {
-      // TODO: sendMessage
-      receiveMessage();
-    }
-  },
-
-  mutations: {
-    setInitData(state, { customer }) {
-      state.currentCustomer = customer;
+    state: {
+        currentCustomer: {
+            robotQAs: []
+        }
     },
 
-    focusQuestion(state, { rqa }) {
-      console.log(`TODO: prepare answer ${rqa.question}`);
+    actions: {
+        getInitData() {
+            // TODO: sendMessage
+            receiveMessage();
+        }
     },
 
-    selectAnswer(state, { answer, rqa }) {
-      console.log(`TODO: user ${answer.content} as answer of question ${rqa.question}. used ${answer.count} times`);
-    }
-  },
+    mutations: {
+        setInitData(state, { customer }) {
+            alert('mutated customer!')
+            state.currentCustomer = customer;
+        },
 
-  getters: {
-    currentCustomer(state) { return state.currentCustomer; }
-  }
+        focusQuestion(state, { rqa }) {
+            console.log(`TODO: prepare answer ${rqa.question}`);
+        },
+
+        selectAnswer(state, { answer, rqa }) {
+            console.log(`TODO: user ${answer.content} as answer of question ${rqa.question}. used ${answer.count} times`);
+        }
+    },
+
+    getters: {
+        currentCustomer(state) { return state.currentCustomer; }
+    }
 }
