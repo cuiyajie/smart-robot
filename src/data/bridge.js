@@ -1,12 +1,12 @@
 import store, { NameSpaces } from '@/store';
-import { QWebChannel } from '@/lib/qwebchannel';
+import QWeb from '@/lib/qwebchannel';
 
 let bridge = null;
 
 export const initBridge = () => {
     alert('注册outer！')
     try {
-        new QWebChannel(qt.webChannelTransport, channel => {
+        new QWeb.QWebChannel(qt.webChannelTransport, channel => {
             alert('注册inner！')
             bridge = channel.objects.bridge;
             bridge.sigResultToWebUI.connect(receiveMessage);
