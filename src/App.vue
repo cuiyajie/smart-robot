@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="page-header">
+      <!-- <div class="page-header">
         <div class="container">智小点</div>
         <i class="iconfont icon-close btn-close" @click="closeApp"></i>
-      </div>
+      </div> -->
       <div class="page-nav">
         <div class="container radiogroup">
           <div class="radio"><label><input type="radio" name="router" :checked="$route.name === Routes.AUTO" @change="routeTo(Routes.AUTO)">全自动模式</label></div>
@@ -177,7 +177,7 @@ i.btn-close {
 }
 
 .content {
-  padding-top: 120px;
+  padding-top: 60px;
   padding-bottom: 60px;
   height: 100%;
   overflow: auto;

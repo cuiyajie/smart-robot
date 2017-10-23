@@ -4,26 +4,35 @@ export default {
     namespaced: true,
 
     state: {
-        currentCustomer: {
-            robotQAs: []
-        }
+        currentCustomer: {},
+        customerMap: {},
+        currentCustomerId: ''
     },
 
     actions: {
         getInitData() {
             // TODO: sendMessage
-            //receiveMessage();
         }
     },
 
     mutations: {
         setInitData(state, { customer }) {
-            alert('mutated customer!')
             state.currentCustomer = customer;
         },
 
+        setData(state, { customerId, robotQA }) {
+            state.currentCustomerId = customerId;
+            state.customerMap = {
+                ...state.customerMap,
+                [customerId]: [
+                    robotQA,
+                    ...(state.customerMap[customerId] || [])
+                ]
+            }
+        },
+
         focusQuestion(state, { rqa }) {
-            console.log(`TODO: prepare answer ${rqa.question}`);
+            sendMessage({ content: rqa, type: 1 });
         },
 
         selectAnswer(state, { answer, rqa }) {
@@ -32,6 +41,8 @@ export default {
     },
 
     getters: {
+        currentRobotQAs(state) { return state.customerMap[state.currentCustomerId]; },
+
         currentCustomer(state) { return state.currentCustomer; }
     }
 }

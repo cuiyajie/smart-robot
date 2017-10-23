@@ -1,15 +1,15 @@
 <template>
   <div class="content-inner">
     <status-header :customer="currentCustomer" />
-    <div class="qa-block" v-for="rqa in currentCustomer.robotQAs">
+    <div class="qa-block" v-for="rqa in currentRobotQAs">
       <div class="qa-q container">
         <div class="qa-avatar"><img :src="currentCustomer.avatar" :alt="currentCustomer.name"></div>
         <div class="qa-text">{{ rqa.question }}</div>
       </div>
-      <div class="qa-q container triple" v-for="(answer, index) in rqa.answerList" @click="selectAnswer(rqa)" @dblclick="sendAnswer(answer, rqa)">
+      <div class="qa-q container" v-for="(answer, index) in rqa.answerList" @click="selectAnswer(rqa)" @dblclick="sendAnswer(answer, rqa)">
         <div class="qa-avatar"><i class="iconfont icon-robot"></i></div>
         <div class="qa-text">{{ answer.answer }}</div>
-        <div class="qa-count"><span :class="['count-label', { 'most-selected': index === 0 }]">{{ index + 1 }}</span></div>
+        <!-- <div class="qa-count"><span :class="['count-label', { 'most-selected': index === 0 }]">{{ index + 1 }}</span></div> -->
       </div>
     </div>
   </div>
@@ -25,7 +25,8 @@ export default {
   components: { StatusHeader },
   computed: {
     ...mapGetters(NameSpaces.SEMI_AUTO, {
-      currentCustomer: 'currentCustomer'
+      currentCustomer: 'currentCustomer',
+      currentRobotQAs: 'currentRobotQAs'
     })
   },
   methods: {
@@ -58,6 +59,7 @@ export default {
     .qa-text {
       flex-basis: ~"calc(100% - 70px)";
       padding-right: 10px !important;
+      word-break: break-all;
     }
 
     .qa-count {

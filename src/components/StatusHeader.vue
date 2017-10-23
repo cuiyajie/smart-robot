@@ -42,7 +42,7 @@ export default {
 
 .content-header {
   position: fixed;
-  top: 120px;
+  top: 60px;
   left: 0;
   right: 0;
   background-color: @bg-lightgrey;
