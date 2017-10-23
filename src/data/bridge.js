@@ -10,12 +10,13 @@ export const initBridge = () => {
                 bridge.sigResultToWebUI.connect(receiveMessage);
                 bridge.sigSetValue.connect(receiveMessage);
                 bridge.sigReflash.connect(receiveMessage);
+                bridge.ReceiveText('test');
             })
-            // receiveMessage();
             // receiveMessage();
     } catch (error) {
         alert(error)
     }
+    bridge.ReceiveText('test2');
 }
 
 export const getBridge = () => {
@@ -23,7 +24,9 @@ export const getBridge = () => {
 }
 
 export const sendMessage = msg => {
+    // alert(JSON.stringify(bridge))
     if (bridge) {
+        // alert('ReceiveText' + JSON.stringify(msg))
         bridge.ReceiveText(msg);
     }
 }

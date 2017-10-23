@@ -6,7 +6,7 @@
         <div class="qa-avatar"><img :src="currentCustomer.avatar" :alt="currentCustomer.name"></div>
         <div class="qa-text">{{ rqa.question }}</div>
       </div>
-      <div class="qa-q container" v-for="(answer, index) in rqa.answerList" @click="selectAnswer(rqa)" @dblclick="sendAnswer(answer, rqa)">
+      <div class="qa-q container" v-for="(answer, index) in rqa.answerList" @click="selectAnswer(answer, rqa)" @dblclick="sendAnswer(answer, rqa)">
         <div class="qa-avatar"><i class="iconfont icon-robot"></i></div>
         <div class="qa-text">{{ answer.answer }}</div>
         <!-- <div class="qa-count"><span :class="['count-label', { 'most-selected': index === 0 }]">{{ index + 1 }}</span></div> -->

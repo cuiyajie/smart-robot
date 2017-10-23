@@ -1,4 +1,5 @@
 import { sendMessage, receiveMessage } from '@/data/bridge'
+import * as _ from 'lodash';
 
 export default {
     namespaced: true,
@@ -25,18 +26,20 @@ export default {
             state.customerMap = {
                 ...state.customerMap,
                 [customerId]: [
-                    robotQA,
-                    ...(state.customerMap[customerId] || [])
+                    ...(state.customerMap[customerId] || []),
+                    robotQA
                 ]
             }
         },
 
         focusQuestion(state, { rqa }) {
-            sendMessage({ content: rqa, type: 1 });
+            console.log(rqa)
+            sendMessage({ "operObj": "answerItem", "oper": "click", "content": rqa.answer });
         },
 
         selectAnswer(state, { answer, rqa }) {
-            console.log(`TODO: user ${answer.content} as answer of question ${rqa.question}. used ${answer.count} times`);
+            sendMessage({ "operObj": "answerItem", "oper": "dbclick", "content": answer.answer });
+            // console.log(`TODO: user ${answer.content} as answer of question ${rqa.question}. used ${answer.count} times`);
         }
     },
 
