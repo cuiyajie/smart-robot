@@ -185,6 +185,20 @@ i.btn-close {
 
   .content-inner {
     padding-top: 36px;
+    height: 100%;
+    overflow: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #bbb;
+  }
+
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: lightgray
   }
 }
 

@@ -39,6 +39,6 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
             '  Opening index.html over file:// won\'t work.\n'
         ))
 
-        shelljs.cp('-R', path.resolve(__dirname, '../dist/*'), 'E:\\qianniu\\bin\\bin\\Resources\\web\\dist')
+        shelljs.cp('-R', path.resolve(__dirname, '../dist/*'), 'E:\\qianniu\\bin_new\\bin\\Resources\\web\\dist')
     })
 })

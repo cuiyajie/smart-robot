@@ -1,5 +1,6 @@
 import { sendMessage, receiveMessage } from '@/data/bridge'
 import * as _ from 'lodash';
+import Vue from 'vue'
 
 export default {
     namespaced: true,
@@ -17,8 +18,22 @@ export default {
     },
 
     mutations: {
-        setInitData(state, { customer }) {
-            state.currentCustomer = customer;
+        setInitData(state, { customerId, name, avatar }) {
+            state.currentCustomer = {
+                ...state.currentCustomer,
+                customerId: customerId,
+                name: name,
+                avatar: avatar
+            };
+
+            state.currentCustomerId = customerId;
+            state.customerMap = {
+                ...state.customerMap,
+                [customerId]: [
+                    ...(state.customerMap[customerId] || []),
+                    {}
+                ]
+            }
         },
 
         setData(state, { customerId, robotQA }) {
@@ -30,10 +45,14 @@ export default {
                     robotQA
                 ]
             }
+
+            Vue.nextTick(function() {
+                //document.getElementsByClassName('qa-block').length
+                //alert(document.getElementsByClassName('qa-block').length);
+            })
         },
 
         focusQuestion(state, { rqa }) {
-            console.log(rqa)
             sendMessage({ "operObj": "answerItem", "oper": "click", "content": rqa.answer });
         },
 
